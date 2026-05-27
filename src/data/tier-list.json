@@ -1,0 +1,12 @@
+{
+  "pickaxes": [
+    { "id": "stone", "name": "Stone Pickaxe", "tier": "D", "power": 10, "price": 100, "description": "Basic starting pickaxe.", "bestFor": ["Early game"], "image": "" },
+    { "id": "copper", "name": "Copper Pickaxe", "tier": "D", "power": 25, "price": 500, "description": "Slightly better than stone.", "bestFor": ["Early game"], "image": "" },
+    { "id": "iron", "name": "Iron Pickaxe", "tier": "C", "power": 60, "price": 2500, "description": "A reliable mid-tier pickaxe.", "bestFor": ["Mid game"], "image": "" },
+    { "id": "gold", "name": "Gold Pickaxe", "tier": "B", "power": 150, "price": 12000, "description": "High-value pickaxe for serious miners.", "bestFor": ["Late early game"], "image": "" },
+    { "id": "diamond", "name": "Diamond Pickaxe", "tier": "A", "power": 400, "price": 75000, "description": "A powerful diamond-tier pickaxe.", "bestFor": ["Late game"], "image": "" },
+    { "id": "emerald", "name": "Emerald Pickaxe", "tier": "S", "power": 1000, "price": 500000, "description": "Top-tier pickaxe for expert miners.", "bestFor": ["End game"], "image": "" },
+    { "id": "void", "name": "Void Pickaxe", "tier": "S", "power": 2500, "price": 2000000, "description": "Legendary void-energy pickaxe.", "bestFor": ["Master miners"], "image": "" }
+  ],
+  "lastUpdated": "2026-05-27"
+}
