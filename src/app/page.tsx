@@ -87,6 +87,39 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Featured Pickaxes — drives to detail pages */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold mb-6">All Pickaxes</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          {[
+            { id: 'coal',       name: 'Coal',       tier: 1,  grade: 'D', color: 'bg-slate-500/20 text-slate-400 border-slate-500/40' },
+            { id: 'stone',      name: 'Stone',      tier: 2,  grade: 'D', color: 'bg-slate-500/20 text-slate-400 border-slate-500/40' },
+            { id: 'copper',     name: 'Copper',     tier: 3,  grade: 'C', color: 'bg-blue-500/20 text-blue-400 border-blue-500/40' },
+            { id: 'iron',       name: 'Iron',       tier: 4,  grade: 'C', color: 'bg-blue-500/20 text-blue-400 border-blue-500/40' },
+            { id: 'gold',       name: 'Gold',       tier: 5,  grade: 'B', color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/40' },
+            { id: 'diamond',    name: 'Diamond',    tier: 6,  grade: 'B', color: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/40' },
+            { id: 'crystal',    name: 'Crystal',    tier: 7,  grade: 'A', color: 'bg-orange-500/20 text-orange-400 border-orange-500/40' },
+            { id: 'crystal-ii', name: 'Crystal II',  tier: 8,  grade: 'A', color: 'bg-orange-500/20 text-orange-400 border-orange-500/40' },
+            { id: 'void',       name: 'Void',       tier: 9,  grade: 'S', color: 'bg-red-500/20 text-red-400 border-red-500/40' },
+            { id: 'void-ii',    name: 'Void II',    tier: 10, grade: 'S', color: 'bg-red-500/20 text-red-400 border-red-500/40' },
+          ].map((p) => (
+            <Link
+              key={p.id}
+              href={`/tier-list/${p.id}`}
+              className={`p-3 rounded-xl border text-center ${p.color} hover:opacity-80 transition`}
+            >
+              <div className="font-bold text-sm mb-0.5">{p.name}</div>
+              <div className="text-xs opacity-60">Tier {p.tier}</div>
+            </Link>
+          ))}
+        </div>
+        <p className="text-center mt-3">
+          <Link href="/tier-list" className="text-sm text-amber-400 hover:text-amber-300">
+            See full tier list with stats →
+          </Link>
+        </p>
+      </section>
+
       {/* About Section */}
       <section className="p-6 rounded-2xl border border-slate-700 bg-slate-900/30">
         <h2 className="text-xl font-bold mb-3">About Pickaxe Tycoon</h2>

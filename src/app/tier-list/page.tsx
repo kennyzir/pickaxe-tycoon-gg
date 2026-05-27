@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 interface Pickaxe {
   id: string;
   name: string;
-  tier: number;      // numeric tier 1-10 (game progression)
+  tier: number;
   grade: 'S' | 'A' | 'B' | 'C' | 'D';
   power: number;
   price: number;
@@ -63,7 +63,7 @@ export default function TierListPage() {
           <h1 className="text-3xl font-black tracking-tight">Pickaxe Tycoon Tier List</h1>
         </div>
         <p className="text-gray-400">
-          All 10 pickaxes ranked from best to worst, based on real game data. Last updated: {tierData.lastUpdated}.
+          All 10 pickaxes ranked from best to worst. Click any pickaxe for a detailed guide, stats, and merge path. Last updated: {tierData.lastUpdated}.
         </p>
       </div>
 
@@ -83,7 +83,10 @@ export default function TierListPage() {
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="font-bold text-lg">{pickaxe.name}</h3>
+                        {/* KEY INTERNAL LINK — pickaxe name links to detail page */}
+                        <Link href={`/tier-list/${pickaxe.id}`} className="font-bold text-lg hover:text-amber-400 transition">
+                          {pickaxe.name}
+                        </Link>
                         <span className={`px-2 py-0.5 rounded font-mono text-xs font-bold ${TIER_BADGE[pickaxe.grade]}`}>
                           Level {pickaxe.tier}
                         </span>
@@ -128,9 +131,12 @@ export default function TierListPage() {
         <div className="flex items-center gap-2 flex-wrap text-sm">
           {PICKAXES.map((p, i) => (
             <span key={p.id} className="flex items-center gap-2">
-              <span className={`px-2 py-1 rounded font-mono font-bold text-xs ${TIER_BADGE[p.grade]}`}>
+              <Link
+                href={`/tier-list/${p.id}`}
+                className={`px-2 py-1 rounded font-mono font-bold text-xs ${TIER_BADGE[p.grade]} hover:opacity-70`}
+              >
                 {p.name}
-              </span>
+              </Link>
               {i < PICKAXES.length - 1 && <span className="text-gray-600">→</span>}
             </span>
           ))}
@@ -138,6 +144,20 @@ export default function TierListPage() {
         <p className="text-gray-400 text-sm mt-3">
           The game has <strong className="text-white">10 Pickaxe Tiers</strong>. Reach Tier 10 (Void Pickaxe II) to complete the index. Merging two same-tier pickaxes creates the next tier.
         </p>
+        <div className="mt-4 flex gap-3">
+          <Link
+            href="/calculator"
+            className="px-4 py-2 rounded-lg bg-amber-400 text-black font-bold text-sm hover:bg-amber-300 transition"
+          >
+            ⛏️ Use Calculator →
+          </Link>
+          <Link
+            href="/beginner-guide"
+            className="px-4 py-2 rounded-lg border border-slate-600 font-bold text-sm hover:border-slate-400 transition"
+          >
+            📖 Beginner Guide →
+          </Link>
+        </div>
       </section>
 
       {/* FAQ */}
@@ -150,15 +170,15 @@ export default function TierListPage() {
           </div>
           <div>
             <h3 className="font-semibold mb-1">How do I get better pickaxes?</h3>
-            <p className="text-gray-400 text-sm">Mine and sell ores to earn money, then buy new pickaxes from the shop. Collect duplicates to merge into stronger versions. AlphaShoe got Crystal Pickaxes after buying 1,500 total pickaxes.</p>
+            <p className="text-gray-400 text-sm">Mine and sell ores to earn money, then buy new pickaxes from the shop. Collect duplicates to merge into stronger versions. <Link href="/beginner-guide" className="text-amber-400 hover:text-amber-300">See the beginner guide for full details.</Link></p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">How many tiers are there?</h3>
-            <p className="text-gray-400 text-sm">There are 10 Pickaxe Tiers. RBXPLAYZ07's series "Reaching Pickaxe Tier 10" documents the journey to max level.</p>
+            <p className="text-gray-400 text-sm">There are 10 Pickaxe Tiers. <Link href="/tier-list/void" className="text-amber-400 hover:text-amber-300">Void Pickaxe</Link> is Tier 9. <Link href="/tier-list/void-ii" className="text-amber-400 hover:text-amber-300">Void Pickaxe II</Link> is Tier 10 — the final goal.</p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">What does "Merge only" mean?</h3>
-            <p className="text-gray-400 text-sm">Some top-tier pickaxes (Crystal II, Void II) cannot be bought — they can only be created by merging two of the previous tier.</p>
+            <p className="text-gray-400 text-sm">Some top-tier pickaxes (Crystal II, Void II) cannot be bought — they can only be created by merging two of the previous tier. <Link href="/beginner-guide#step4" className="text-amber-400 hover:text-amber-300">Learn about merging in the beginner guide.</Link></p>
           </div>
         </div>
       </section>

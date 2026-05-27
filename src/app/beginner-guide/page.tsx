@@ -114,10 +114,10 @@ export default function BeginnerGuidePage() {
               Once you have <strong className="text-white">two or more of the same pickaxe</strong>, you can merge them into a stronger version. This is key to progression.
             </p>
             <p className="text-gray-300 leading-relaxed">
-              Merging takes the two pickaxes and creates a single, more powerful pickaxe. Keep merging to climb the tiers — Stone → Copper → Iron → Gold → Diamond → Emerald → Void.
+              Merging takes the two pickaxes and creates a single, more powerful pickaxe. Keep merging to climb the tiers — Stone → Copper → Iron → Gold → Diamond → Crystal → Crystal II → Void → Void II.
             </p>
             <div className="p-4 rounded-xl bg-purple-500/5 border border-purple-500/20 text-sm text-gray-300">
-              🔮 <strong>Merging</strong> is the fastest way to reach top-tier pickaxes without spending millions.
+              🔮 <strong>Merging</strong> is the fastest way to reach top-tier pickaxes without spending millions. See the <Link href="/tier-list" className="text-amber-400 hover:text-amber-300">full tier list</Link> for exact merge paths.
             </div>
           </div>
         </section>
@@ -147,14 +147,14 @@ export default function BeginnerGuidePage() {
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { tip: 'Deposit often', desc: 'Don\'t let your inventory fill up — deposit every few minutes.' },
-              { tip: 'Focus on merging early', desc: 'Merging two mid-tier pickaxes beats buying one expensive one.' },
-              { tip: 'Use codes', desc: 'Check our codes page for free rewards that boost your progress.' },
-              { tip: 'Watch for updates', desc: 'New pickaxes and areas are added regularly. Check our updates page.' },
+              { tip: 'Deposit often', desc: <span>Don&apos;t let your inventory fill up — deposit every few minutes.</span> },
+              { tip: 'Focus on merging early', desc: <span>Merging two mid-tier pickaxes beats buying one expensive one.</span> },
+              { tip: 'Use codes', desc: <span>Check our <Link href="/codes" className="text-amber-400 hover:text-amber-300">codes page</Link> for free rewards that boost your progress.</span> },
+              { tip: 'Watch for updates', desc: <span>New pickaxes and areas are added regularly. <Link href="/updates" className="text-amber-400 hover:text-amber-300">Check our updates page</Link>.</span> },
             ].map(({ tip, desc }) => (
               <div key={tip} className="p-4 rounded-xl border border-slate-700 bg-slate-900/20">
                 <h3 className="font-bold text-amber-400 mb-1">💡 {tip}</h3>
-                <p className="text-gray-400 text-sm">{desc}</p>
+                <div className="text-gray-400 text-sm">{desc}</div>
               </div>
             ))}
           </div>

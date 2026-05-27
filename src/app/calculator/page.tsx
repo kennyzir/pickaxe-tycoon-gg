@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import tierData from '@/data/tier-list.json';
 
 interface Pickaxe {
@@ -178,13 +179,25 @@ export default function CalculatorPage() {
 
           {/* Pickaxe Details */}
           <div className="p-5 rounded-xl border border-slate-700 bg-slate-900/30">
-            <h3 className="font-bold mb-2">{selected.name}</h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="font-bold">{selected.name}</h3>
+              <Link
+                href={`/tier-list/${selected.id}`}
+                className="text-xs text-amber-400 hover:text-amber-300 font-semibold"
+              >
+                Full guide →
+              </Link>
+            </div>
             <div className="flex flex-wrap gap-2 mb-3">
               {selected.bestFor.map((tag) => (
                 <span key={tag} className="px-2 py-1 rounded bg-slate-800 text-xs text-gray-400">{tag}</span>
               ))}
             </div>
             <p className="text-gray-400 text-sm">{selected.description}</p>
+            <div className="mt-3 pt-3 border-t border-slate-700 flex gap-3 text-xs">
+              <Link href="/tier-list" className="text-amber-400 hover:text-amber-300">Full tier list →</Link>
+              <Link href="/beginner-guide" className="text-amber-400 hover:text-amber-300">Beginner guide →</Link>
+            </div>
           </div>
         </div>
       </div>
