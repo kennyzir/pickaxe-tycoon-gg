@@ -4,16 +4,19 @@ import tierData from '@/data/tier-list.json';
 
 export const metadata: Metadata = {
   title: 'Pickaxe Tycoon Tier List — All Pickaxes Ranked (S to D)',
-  description: 'Every Pickaxe Tycoon pickaxe ranked from S to D tier. See the best pickaxes, their stats, power, and price.',
+  description: 'Every Pickaxe Tycoon pickaxe ranked from S to D tier. See the best pickaxes, their power stats, and progression path.',
   alternates: { canonical: 'https://pickaxetycoon.gg/tier-list' },
 };
 
 interface Pickaxe {
   id: string;
   name: string;
-  tier: 'S' | 'A' | 'B' | 'C' | 'D';
+  tier: number;      // numeric tier 1-10 (game progression)
+  grade: 'S' | 'A' | 'B' | 'C' | 'D';
   power: number;
   price: number;
+  ore: string;
+  rarity: string;
   description: string;
   bestFor: string[];
   image?: string;
@@ -42,7 +45,7 @@ const TIER_BADGE: Record<string, string> = {
 const TIER_ORDER_MAP: Record<string, number> = { S: 5, A: 4, B: 3, C: 2, D: 1 };
 
 export default function TierListPage() {
-  const sorted = [...PICKAXES].sort((a, b) => TIER_ORDER_MAP[b.tier] - TIER_ORDER_MAP[a.tier]);
+  const sorted = [...PICKAXES].sort((a, b) => TIER_ORDER_MAP[b.grade] - TIER_ORDER_MAP[a.grade]);
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10">
@@ -60,29 +63,32 @@ export default function TierListPage() {
           <h1 className="text-3xl font-black tracking-tight">Pickaxe Tycoon Tier List</h1>
         </div>
         <p className="text-gray-400">
-          All pickaxes ranked from best to worst. Last updated: {tierData.lastUpdated}.
+          All 10 pickaxes ranked from best to worst, based on real game data. Last updated: {tierData.lastUpdated}.
         </p>
       </div>
 
       {/* Tier Groups */}
-      {TIER_ORDER.map((tier) => {
-        const items = sorted.filter((p) => p.tier === tier);
+      {TIER_ORDER.map((grade) => {
+        const items = sorted.filter((p) => p.grade === grade);
         if (items.length === 0) return null;
         return (
-          <section key={tier} className="mb-8">
+          <section key={grade} className="mb-8">
             <div className="flex items-center gap-3 mb-4">
-              <span className={`px-3 py-1 rounded-lg font-black text-sm ${TIER_BADGE[tier]}`}>Tier {tier}</span>
+              <span className={`px-3 py-1 rounded-lg font-black text-sm ${TIER_BADGE[grade]}`}>Tier {grade}</span>
               <span className="text-gray-500 text-sm">{items.length} pickaxe{items.length !== 1 ? 's' : ''}</span>
             </div>
             <div className="space-y-3">
               {items.map((pickaxe) => (
-                <div key={pickaxe.id} className={`p-5 rounded-2xl border ${TIER_COLORS[pickaxe.tier]}`}>
+                <div key={pickaxe.id} className={`p-5 rounded-2xl border ${TIER_COLORS[pickaxe.grade]}`}>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
                         <h3 className="font-bold text-lg">{pickaxe.name}</h3>
-                        <span className={`px-2 py-0.5 rounded font-mono text-xs font-bold ${TIER_BADGE[pickaxe.tier]}`}>
-                          T{pickaxe.tier}
+                        <span className={`px-2 py-0.5 rounded font-mono text-xs font-bold ${TIER_BADGE[pickaxe.grade]}`}>
+                          Level {pickaxe.tier}
+                        </span>
+                        <span className="px-2 py-0.5 rounded bg-slate-800 text-xs text-gray-400">
+                          {pickaxe.rarity}
                         </span>
                       </div>
                       <p className="text-gray-400 text-sm mb-3">{pickaxe.description}</p>
@@ -97,7 +103,11 @@ export default function TierListPage() {
                     <div className="text-right shrink-0">
                       <div className="text-2xl font-black text-amber-400">{pickaxe.power.toLocaleString()}</div>
                       <div className="text-xs text-gray-500">Power</div>
-                      <div className="text-sm text-gray-400 mt-1">${pickaxe.price.toLocaleString()}</div>
+                      {pickaxe.price > 0 ? (
+                        <div className="text-sm text-gray-400 mt-1">${pickaxe.price.toLocaleString()}</div>
+                      ) : (
+                        <div className="text-sm text-purple-400 mt-1">Merge only</div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -109,8 +119,26 @@ export default function TierListPage() {
 
       {/* Note */}
       <div className="mt-8 p-4 rounded-xl border border-slate-700 bg-slate-900/20 text-sm text-gray-500">
-        <strong className="text-gray-400">Note:</strong> Stats are based on community testing and may vary. Prices reflect in-game costs.
+        <strong className="text-gray-400">Note:</strong> Power values based on community testing and game mechanics analysis. Prices reflect in-game shop costs. Merge-only pickaxes (Crystal II, Void II) have no shop price.
       </div>
+
+      {/* Progression Path */}
+      <section className="mt-10 p-6 rounded-2xl border border-amber-400/20 bg-amber-400/5">
+        <h2 className="font-bold text-lg mb-4">Progression Path</h2>
+        <div className="flex items-center gap-2 flex-wrap text-sm">
+          {PICKAXES.map((p, i) => (
+            <span key={p.id} className="flex items-center gap-2">
+              <span className={`px-2 py-1 rounded font-mono font-bold text-xs ${TIER_BADGE[p.grade]}`}>
+                {p.name}
+              </span>
+              {i < PICKAXES.length - 1 && <span className="text-gray-600">→</span>}
+            </span>
+          ))}
+        </div>
+        <p className="text-gray-400 text-sm mt-3">
+          The game has <strong className="text-white">10 Pickaxe Tiers</strong>. Reach Tier 10 (Void Pickaxe II) to complete the index. Merging two same-tier pickaxes creates the next tier.
+        </p>
+      </section>
 
       {/* FAQ */}
       <section className="mt-12 p-6 rounded-2xl border border-slate-700">
@@ -118,15 +146,19 @@ export default function TierListPage() {
         <div className="space-y-4">
           <div>
             <h3 className="font-semibold mb-1">What is the best pickaxe in Pickaxe Tycoon?</h3>
-            <p className="text-gray-400 text-sm">The Void Pickaxe is currently the highest-tier pickaxe with 2,500 power. It is the ultimate goal for most players.</p>
+            <p className="text-gray-400 text-sm">The Void Pickaxe II (Tier 10) is the ultimate pickaxe with 5,000 power. It is only obtainable by merging two Void Pickaxes.</p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">How do I get better pickaxes?</h3>
-            <p className="text-gray-400 text-sm">Mine and sell ores to earn money, then buy new pickaxes from the shop. Collect duplicates to merge into stronger versions.</p>
+            <p className="text-gray-400 text-sm">Mine and sell ores to earn money, then buy new pickaxes from the shop. Collect duplicates to merge into stronger versions. AlphaShoe got Crystal Pickaxes after buying 1,500 total pickaxes.</p>
           </div>
           <div>
-            <h3 className="font-semibold mb-1">Is the tier list based on power only?</h3>
-            <p className="text-gray-400 text-sm">Mostly power, but also consider price-to-power ratio for early and mid-game progression efficiency.</p>
+            <h3 className="font-semibold mb-1">How many tiers are there?</h3>
+            <p className="text-gray-400 text-sm">There are 10 Pickaxe Tiers. RBXPLAYZ07's series "Reaching Pickaxe Tier 10" documents the journey to max level.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What does "Merge only" mean?</h3>
+            <p className="text-gray-400 text-sm">Some top-tier pickaxes (Crystal II, Void II) cannot be bought — they can only be created by merging two of the previous tier.</p>
           </div>
         </div>
       </section>

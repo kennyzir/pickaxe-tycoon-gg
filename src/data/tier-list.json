@@ -1,12 +1,157 @@
 {
+  "gameName": "Pickaxe Tycoon",
+  "gameId": "73814003954154",
+  "lastUpdated": "2026-05-27",
+  "description": "Buy pickaxes, mine ores, merge duplicates to upgrade, and climb to Tier 10. Build your mining tower and collect every pickaxe.",
   "pickaxes": [
-    { "id": "stone", "name": "Stone Pickaxe", "tier": "D", "power": 10, "price": 100, "description": "Basic starting pickaxe.", "bestFor": ["Early game"], "image": "" },
-    { "id": "copper", "name": "Copper Pickaxe", "tier": "D", "power": 25, "price": 500, "description": "Slightly better than stone.", "bestFor": ["Early game"], "image": "" },
-    { "id": "iron", "name": "Iron Pickaxe", "tier": "C", "power": 60, "price": 2500, "description": "A reliable mid-tier pickaxe.", "bestFor": ["Mid game"], "image": "" },
-    { "id": "gold", "name": "Gold Pickaxe", "tier": "B", "power": 150, "price": 12000, "description": "High-value pickaxe for serious miners.", "bestFor": ["Late early game"], "image": "" },
-    { "id": "diamond", "name": "Diamond Pickaxe", "tier": "A", "power": 400, "price": 75000, "description": "A powerful diamond-tier pickaxe.", "bestFor": ["Late game"], "image": "" },
-    { "id": "emerald", "name": "Emerald Pickaxe", "tier": "S", "power": 1000, "price": 500000, "description": "Top-tier pickaxe for expert miners.", "bestFor": ["End game"], "image": "" },
-    { "id": "void", "name": "Void Pickaxe", "tier": "S", "power": 2500, "price": 2000000, "description": "Legendary void-energy pickaxe.", "bestFor": ["Master miners"], "image": "" }
-  ],
-  "lastUpdated": "2026-05-27"
+    {
+      "id": "coal",
+      "name": "Coal Pickaxe",
+      "tier": 1,
+      "grade": "D",
+      "power": 1,
+      "price": 0,
+      "ore": "Coal",
+      "rarity": "Common",
+      "description": "The most basic pickaxe. Automatically mines coal ores. Start here.",
+      "bestFor": [
+        "Starting out",
+        "Tutorial"
+      ]
+    },
+    {
+      "id": "stone",
+      "name": "Stone Pickaxe",
+      "tier": 2,
+      "grade": "D",
+      "power": 3,
+      "price": 100,
+      "ore": "Stone",
+      "rarity": "Common",
+      "description": "Slightly better than coal. Mines stone ores efficiently.",
+      "bestFor": [
+        "Early game"
+      ]
+    },
+    {
+      "id": "copper",
+      "name": "Copper Pickaxe",
+      "tier": 3,
+      "grade": "C",
+      "power": 8,
+      "price": 500,
+      "ore": "Copper",
+      "rarity": "Common",
+      "description": "Reliable mid-tier pickaxe for copper ore deposits.",
+      "bestFor": [
+        "Early game",
+        "Copper ore"
+      ]
+    },
+    {
+      "id": "iron",
+      "name": "Iron Pickaxe",
+      "tier": 4,
+      "grade": "C",
+      "power": 20,
+      "price": 2500,
+      "ore": "Iron",
+      "rarity": "Uncommon",
+      "description": "Strong mid-game pickaxe. Mines iron efficiently.",
+      "bestFor": [
+        "Mid game",
+        "Iron ore"
+      ]
+    },
+    {
+      "id": "gold",
+      "name": "Gold Pickaxe",
+      "tier": 5,
+      "grade": "B",
+      "power": 55,
+      "price": 12000,
+      "ore": "Gold",
+      "rarity": "Uncommon",
+      "description": "High-value pickaxe for serious miners targeting gold.",
+      "bestFor": [
+        "Mid game",
+        "Gold ore"
+      ]
+    },
+    {
+      "id": "diamond",
+      "name": "Diamond Pickaxe",
+      "tier": 6,
+      "grade": "B",
+      "power": 150,
+      "price": 75000,
+      "ore": "Diamond",
+      "rarity": "Rare",
+      "description": "A powerful diamond-tier pickaxe. Mines rare gems.",
+      "bestFor": [
+        "Late mid game",
+        "Diamond ore"
+      ]
+    },
+    {
+      "id": "crystal",
+      "name": "Crystal Pickaxe",
+      "tier": 7,
+      "grade": "A",
+      "power": 400,
+      "price": 350000,
+      "ore": "Crystal",
+      "rarity": "Rare",
+      "description": "AlphaShoe got 2 Crystal pickaxes after buying 1,500 total. High-tier crystal-class pickaxe.",
+      "bestFor": [
+        "Late game",
+        "Crystal ore"
+      ]
+    },
+    {
+      "id": "crystal-ii",
+      "name": "Crystal Pickaxe II",
+      "tier": 8,
+      "grade": "A",
+      "power": 900,
+      "price": 0,
+      "ore": "Crystal",
+      "rarity": "Epic",
+      "description": "Merged crystal pickaxe \u2014 the result of combining two Crystal Pickaxes. Significantly more powerful.",
+      "bestFor": [
+        "End game",
+        "Merging"
+      ]
+    },
+    {
+      "id": "void",
+      "name": "Void Pickaxe",
+      "tier": 9,
+      "grade": "S",
+      "power": 2500,
+      "price": 2000000,
+      "ore": "Void Ore",
+      "rarity": "Epic",
+      "description": "Legendary void-energy pickaxe. Extremely rare and powerful.",
+      "bestFor": [
+        "Master miners",
+        "Void ore"
+      ]
+    },
+    {
+      "id": "void-ii",
+      "name": "Void Pickaxe II",
+      "tier": 10,
+      "grade": "S",
+      "power": 5000,
+      "price": 0,
+      "ore": "Void Ore",
+      "rarity": "Legendary",
+      "description": "MAX TIER. Reached at Pickaxe Tier 10. The ultimate pickaxe in the game.",
+      "bestFor": [
+        "MAX tier",
+        "Completion"
+      ]
+    }
+  ]
 }

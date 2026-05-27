@@ -2,29 +2,67 @@
   "game": {
     "name": "Pickaxe Tycoon",
     "robloxId": "73814003954154",
-    "developer": "Unknown",
+    "developer": "Popular Marketplace",
     "genre": "Tycoon / Simulator",
-    "currentVersion": "1.0",
+    "currentVersion": "v1.0",
     "lastUpdated": "2026-05-27"
   },
   "stats": {
-    "visits": "21.2K+",
-    "favorites": "N/A",
-    "onlineNow": "21.2K"
+    "visits": "9.3M+",
+    "favorites": "44,780",
+    "onlineNow": "14,894"
   },
   "seo": {
-    "siteTitle": "Pickaxe Tycoon Guide & Tools",
-    "siteDescription": "The ultimate Pickaxe Tycoon companion — all working codes, best tier list, and mining calculator. Updated May 2026.",
+    "siteTitle": "Pickaxe Tycoon Guide & Tools 2026",
+    "siteDescription": "The ultimate Pickaxe Tycoon companion \u2014 codes, tier list, mining calculator, and beginner guide. Updated May 2026.",
     "baseUrl": "https://pickaxetycoon.gg",
-    "primaryKeywords": ["Pickaxe Tycoon", "Pickaxe Tycoon Roblox", "Pickaxe Tycoon codes"],
-    "secondaryKeywords": ["Pickaxe Tycoon tier list", "Pickaxe Tycoon guide", "Pickaxe Tycoon calculator"]
+    "primaryKeywords": [
+      "Pickaxe Tycoon",
+      "Pickaxe Tycoon Roblox",
+      "Pickaxe Tycoon codes"
+    ],
+    "secondaryKeywords": [
+      "Pickaxe Tycoon tier list",
+      "Pickaxe Tycoon calculator",
+      "Pickaxe Tycoon guide",
+      "Pickaxe Tycoon merge",
+      "Pickaxe Tycoon Tier 10"
+    ]
   },
   "routes": [
-    { "path": "/", "title": "Pickaxe Tycoon Guide", "priority": "1.0" },
-    { "path": "/codes", "title": "Pickaxe Tycoon Codes", "priority": "0.9" },
-    { "path": "/tier-list", "title": "Pickaxe Tycoon Tier List", "priority": "0.9" },
-    { "path": "/calculator", "title": "Pickaxe Tycoon Calculator", "priority": "0.8" },
-    { "path": "/beginner-guide", "title": "Pickaxe Tycoon Beginner Guide", "priority": "0.8" },
-    { "path": "/updates", "title": "Pickaxe Tycoon Updates", "priority": "0.7" }
-  ]
+    {
+      "path": "/",
+      "title": "Pickaxe Tycoon Guide",
+      "priority": "1.0"
+    },
+    {
+      "path": "/calculator",
+      "title": "Mining Calculator",
+      "priority": "0.9"
+    },
+    {
+      "path": "/codes",
+      "title": "Active Codes",
+      "priority": "0.9"
+    },
+    {
+      "path": "/tier-list",
+      "title": "Pickaxe Tier List",
+      "priority": "0.9"
+    },
+    {
+      "path": "/beginner-guide",
+      "title": "Beginner Guide",
+      "priority": "0.8"
+    },
+    {
+      "path": "/updates",
+      "title": "Updates",
+      "priority": "0.8"
+    }
+  ],
+  "calculator": {
+    "type": "progression",
+    "dataFile": "tier-list.json"
+  }
 }

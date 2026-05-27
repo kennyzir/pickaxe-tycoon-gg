@@ -6,9 +6,12 @@ import tierData from '@/data/tier-list.json';
 interface Pickaxe {
   id: string;
   name: string;
-  tier: 'S' | 'A' | 'B' | 'C' | 'D';
+  tier: number;
+  grade: 'S' | 'A' | 'B' | 'C' | 'D';
   power: number;
   price: number;
+  ore: string;
+  rarity: string;
   description: string;
   bestFor: string[];
 }
@@ -41,7 +44,7 @@ export default function CalculatorPage() {
   const totalValue = useMemo(() => selected.price * quantity, [selected.price, quantity]);
 
   const efficiency = useMemo(() => {
-    if (selected.price === 0) return 0;
+    if (selected.price === 0) return 'N/A';
     return (selected.power / Math.log(selected.price + 1)).toFixed(2);
   }, [selected]);
 
@@ -61,7 +64,7 @@ export default function CalculatorPage() {
           <h1 className="text-3xl font-black tracking-tight">Mining Calculator</h1>
         </div>
         <p className="text-gray-400">
-          Calculate total mining power and value for any pickaxe in Pickaxe Tycoon.
+          Calculate total mining power and find the best pickaxe for your stage in Pickaxe Tycoon.
         </p>
       </div>
 
@@ -84,14 +87,14 @@ export default function CalculatorPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-bold">{pick.name}</span>
-                      <span className={`text-xs px-2 py-0.5 rounded font-mono font-bold ${TIER_BG[pick.tier]} ${TIER_COLORS[pick.tier]}`}>
+                      <span className={`text-xs px-2 py-0.5 rounded font-mono font-bold ${TIER_BG[pick.grade]} ${TIER_COLORS[pick.grade]}`}>
                         T{pick.tier}
                       </span>
                     </div>
-                    <p className="text-gray-500 text-xs">{pick.description}</p>
+                    <p className="text-gray-500 text-xs">{pick.rarity} · Mines {pick.ore}</p>
                   </div>
                   <div className="text-right">
-                    <div className={`font-black text-lg ${TIER_COLORS[pick.tier]}`}>{pick.power}</div>
+                    <div className={`font-black text-lg ${TIER_COLORS[pick.grade]}`}>{pick.power}</div>
                     <div className="text-gray-600 text-xs">power</div>
                   </div>
                 </div>
@@ -105,7 +108,7 @@ export default function CalculatorPage() {
           <h2 className="font-bold text-lg mb-4">Results</h2>
           <div className="p-6 rounded-2xl border border-amber-400/20 bg-gradient-to-br from-amber-400/5 to-slate-900 mb-6">
             <div className="text-center mb-6">
-              <div className={`text-5xl font-black ${TIER_COLORS[selected.tier]}`}>
+              <div className={`text-5xl font-black ${TIER_COLORS[selected.grade]}`}>
                 {totalPower.toLocaleString()}
               </div>
               <div className="text-gray-500 mt-1">Total Mining Power</div>
@@ -125,22 +128,30 @@ export default function CalculatorPage() {
             <div className="space-y-3">
               <div className="flex justify-between items-center">
                 <span className="text-gray-400 text-sm">Price per pickaxe</span>
-                <span className="font-mono font-bold">${selected.price.toLocaleString()}</span>
+                <span className="font-mono font-bold">
+                  {selected.price > 0 ? `$${selected.price.toLocaleString()}` : 'Merge only'}
+                </span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-gray-400 text-sm">Total value</span>
-                <span className="font-mono font-bold">${totalValue.toLocaleString()}</span>
+                <span className="font-mono font-bold">
+                  {selected.price > 0 ? `$${totalValue.toLocaleString()}` : 'N/A'}
+                </span>
               </div>
               <div className="flex justify-between items-center">
                 <span className="text-gray-400 text-sm">Power/Price ratio</span>
                 <span className="font-mono font-bold text-green-400">{efficiency}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-400 text-sm">Tier</span>
+                <span className="font-mono font-bold">{selected.tier} / 10</span>
               </div>
             </div>
           </div>
 
           {/* Quantity */}
           <div className="mb-6">
-            <label className="block font-semibold text-sm mb-2">Quantity</label>
+            <label className="block font-semibold text-sm mb-2">Quantity (how many of this pickaxe)</label>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -184,11 +195,15 @@ export default function CalculatorPage() {
         <div className="space-y-4">
           <div>
             <h3 className="font-semibold mb-1">How is the calculator power calculated?</h3>
-            <p className="text-gray-400 text-sm">Total power = pickaxe base power × quantity. Each pickaxe has a fixed base power value.</p>
+            <p className="text-gray-400 text-sm">Total power = pickaxe base power × quantity. Each pickaxe has a fixed base power value. Crystal II and Void II can only be obtained through merging.</p>
           </div>
           <div>
             <h3 className="font-semibold mb-1">What is the power/price ratio?</h3>
-            <p className="text-gray-400 text-sm">It's a measure of how much power you get per dollar spent. Higher ratio = better value for money.</p>
+            <p className="text-gray-400 text-sm">It's a measure of how much power you get per dollar spent. Higher ratio = better value for money in early-mid game.</p>
+          </div>
+          <div>
+            <h3 className="font-semibold mb-1">What pickaxe should I aim for?</h3>
+            <p className="text-gray-400 text-sm">For mid-game: Diamond Pickaxe (Tier 6). For late game: Crystal Pickaxe (Tier 7). The Void Pickaxe II (Tier 10) is the final goal.</p>
           </div>
         </div>
       </section>
