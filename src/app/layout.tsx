@@ -22,14 +22,14 @@ export const metadata: Metadata = {
     description: config.seo.siteDescription,
     url: config.seo.baseUrl,
     siteName: config.game.name,
-    images: [{ url: `${config.seo.baseUrl}/og-default.svg`, width: 1200, height: 630 }],
+    images: [{ url: `${config.seo.baseUrl}/og-default.jpg`, width: 1200, height: 630 }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: config.seo.siteTitle,
     description: config.seo.siteDescription,
-    images: [`${config.seo.baseUrl}/og-default.svg`],
+    images: [`${config.seo.baseUrl}/og-default.jpg`],
   },
   robots: {
     index: true,

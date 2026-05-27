@@ -42,29 +42,40 @@ export default function HomePage() {
   return (
     <main className="mx-auto max-w-5xl px-4 py-12">
       {/* Hero */}
-      <section className="text-center mb-16">
-        <div className="inline-block text-5xl mb-4">⛏️</div>
-        <h1 className="text-4xl font-black tracking-tight mb-3">
-          Pickaxe Tycoon Guide & Tools
-        </h1>
-        <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-6">
-          The ultimate companion for Pickaxe Tycoon on Roblox. Codes, tier lists, calculators, and guides — all in one place.
-        </p>
-        <div className="flex gap-3 justify-center flex-wrap">
-          <a
-            href="https://www.roblox.com/games/73814003954154/Pickaxe-Tycoon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 rounded-xl font-bold text-black bg-amber-400 hover:bg-amber-300 transition"
-          >
-            Play on Roblox →
-          </a>
-          <Link
-            href="/codes"
-            className="px-6 py-3 rounded-xl font-bold border border-slate-600 hover:border-amber-400 transition"
-          >
-            View Codes
-          </Link>
+      <section
+        className="text-center mb-16 rounded-2xl overflow-hidden py-16 px-6 relative"
+        style={{
+          backgroundImage: "url('/hero-bg.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Dark overlay so text remains readable */}
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10">
+          <div className="inline-block text-5xl mb-4">⛏️</div>
+          <h1 className="text-4xl font-black tracking-tight mb-3 text-white">
+            Pickaxe Tycoon Guide & Tools
+          </h1>
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
+            The ultimate companion for Pickaxe Tycoon on Roblox. Codes, tier lists, calculators, and guides — all in one place.
+          </p>
+          <div className="flex gap-3 justify-center flex-wrap">
+            <a
+              href="https://www.roblox.com/games/73814003954154/Pickaxe-Tycoon"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-xl font-bold text-black bg-amber-400 hover:bg-amber-300 transition"
+            >
+              Play on Roblox →
+            </a>
+            <Link
+              href="/codes"
+              className="px-6 py-3 rounded-xl font-bold text-white border border-white/30 hover:bg-white/10 transition"
+            >
+              View Codes →
+            </Link>
+          </div>
         </div>
       </section>
 
