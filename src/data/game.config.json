@@ -59,6 +59,21 @@
       "path": "/updates",
       "title": "Updates",
       "priority": "0.8"
+    },
+    {
+      "path": "/merge-guide",
+      "title": "Merge Guide",
+      "priority": "0.8"
+    },
+    {
+      "path": "/ore-guide",
+      "title": "Ore Guide",
+      "priority": "0.8"
+    },
+    {
+      "path": "/money-making",
+      "title": "Money Making Guide",
+      "priority": "0.8"
     }
   ],
   "calculator": {
